@@ -10,8 +10,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@types/jest": "^29.5.14",
+    "@types/node": "^22.8.5",
     "cockroachdb": "^0.0.1",
     "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "pg": "^8.13.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
