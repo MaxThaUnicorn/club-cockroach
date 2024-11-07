@@ -3,7 +3,7 @@ import React from 'react';
 const Accueil: React.FC = () => {
   return (
     <div>
-      <h1>Page d'accueil</h1>
+      <h1>Bienvenu sur Club Cockroach</h1>
     </div>
   );
 };
