@@ -1,12 +1,18 @@
 import React from 'react';
-
+import { useRef } from 'react';
 const Connexion: React.FC = () => {
+
+    function handleSubmit(e) {
+      e.preventDefault();
+      alert('Vous avez cliquer');
+    }
+
   return (
     <div>
       <div className='formConnexion'>
       <h1>Connexion</h1>
       <p>Page de connexion</p>
-        <form action="">
+        <form onSubmit={handleSubmit}>
           <p>
             <label htmlFor="">Username:</label>
             <input type="text" name='username'/>

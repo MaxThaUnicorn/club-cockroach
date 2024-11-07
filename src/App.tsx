@@ -18,6 +18,7 @@ const App: React.FC = () => {
       <Routes>
         <Route path={ROUTES.ACCUEIL} element={<Accueil />} />
         <Route path={ROUTES.CONNEXION} element={<Connexion />} />
+        <Route path={ROUTES.LOGIN } />
 
         <Route path="*" element={<Page404 />} />
       </Routes>
