@@ -1,3 +1,8 @@
+@font-face {
+  font-family: 'cinnamon';
+  src: url('./assets/font/CinnamonCoffeCake-Ea2Pr.ttf') format('truetype');
+}
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -23,11 +28,79 @@ a:hover {
 }
 
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
+  width: 100%;
   min-height: 100vh;
+  margin: 0;
+}
+
+/* classes générales */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  min-height: 100vh
+}
+
+.h-100 {
+  min-height: 100vh
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-grow {
+  flex-grow: 1;
+}
+
+/* Connexion */
+.backgroundConnexion{
+  background-image: url('./assets/img/title-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  width: 100%;
+}
+.formConnexion{
+  width: 100vh;
+  height: 100vh;
+  margin: auto;
+  text-align: center;
+  padding: 10px;
+}
+
+.formConnexion p{
+  width: 50%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.formConnexion label{
+  width: 100%;
+  text-align: left;
+  margin-bottom: 5px;
+}
+
+.formConnexion input{
+  width: 100%;
+  height: 15px;
+  padding: 10px;
+  border: 2px solid #ccc;
+  background-color: #000;
+  color: #fff;
+  border-radius: 15px;
+  margin-bottom: 5px;
+}
+
+.formConnexion button{
+  margin-top: 10px;
+  background-image: url('./assets/img/accueil-bg.jpg');
+  background-position: center;
+  color: #ffffff;
 }
 
 h1 {
@@ -54,15 +127,51 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+/* Page d'accueil */
+.Accueil {
+  background-image: url('./assets/img/accueil-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  width: 100%;
+  font-family: 'cinnamon';
+  position: relative;
+}
+
+.AccueilStyle {
+  background-image: url('./assets/img/title-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 10px;
+  border: 1px solid #f9f9f9;
+  text-align: center;
+  color: #f9f9f9;
+}
+
+.Accueil h1 {
+  position: absolute;
+  left: 50%;
+  top: 10%;
+  transform: translate(-50%);
+  padding: 10px;
+  width: 40%;
+}
+
+.Accueil div {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.Accueil a {
+  width: 300px;
+  font-size: xx-large;
+  margin-top: 50px;
+}
+
+.Accueil a:hover {
+  border: 2px solid #FFD700;
+  color: #FFD700;
 }
