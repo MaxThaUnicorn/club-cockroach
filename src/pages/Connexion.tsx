@@ -1,5 +1,4 @@
 import React from 'react';
-import '../styles/Connexion.css'
 
 const Connexion: React.FC = () => {
   return (
