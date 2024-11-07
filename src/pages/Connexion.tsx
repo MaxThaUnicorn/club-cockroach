@@ -8,7 +8,7 @@ const Connexion: React.FC = () => {
     }
 
   return (
-    <div>
+    <div className='backgroundConnexion'>
       <div className='formConnexion'>
       <h1>Connexion</h1>
       <p>Page de connexion</p>
