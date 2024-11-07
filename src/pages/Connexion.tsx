@@ -1,5 +1,4 @@
 import React from 'react';
-import { useRef } from 'react';
 const Connexion: React.FC = () => {
 
     function handleSubmit(e) {
