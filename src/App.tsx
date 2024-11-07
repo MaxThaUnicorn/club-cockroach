@@ -19,7 +19,7 @@ const App: React.FC = () => {
         <Route path={ROUTES.ACCUEIL} element={<Accueil />} />
         <Route path={ROUTES.CONNEXION} element={<Connexion />} />
 
-        <Route element={<Page404 />} />
+        <Route path="*" element={<Page404 />} />
       </Routes>
     </div>
   );
