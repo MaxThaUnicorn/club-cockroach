@@ -137,11 +137,16 @@ nav{
   justify-content: space-between;
   align-items: center;
   height: 8vh;
-  background-color: #646cff;
+  background-color: #242424;
 }
 
-nav div a {
-  margin: 10px;
+nav div {
+  display: flex;
+  align-items: center;
+}
+
+nav a {
+  margin: 20px;
 }
 
 nav img {
