@@ -71,8 +71,21 @@ button:focus-visible {
   padding: 0;
 }
 
-.w-100 {
-  width: 100%;
+#root {
+  min-height: 100vh
+}
+
+.h-100 {
+  min-height: 100vh
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-grow {
+  flex-grow: 1;
 }
 
 /* Page d'accueil */
@@ -80,4 +93,9 @@ button:focus-visible {
 .Accueil {
   background-color: aquamarine;
   width: 100%;
+  height: auto;
+}
+
+.test {
+  background-color: brown;
 }
