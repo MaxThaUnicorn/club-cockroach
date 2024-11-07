@@ -95,19 +95,6 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
 /* classes générales */
 * {
   margin: 0;
@@ -137,7 +124,10 @@ nav{
   justify-content: space-between;
   align-items: center;
   height: 8vh;
-  background-color: #242424;
+  background-image: url('./assets/img/title-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 nav div {
@@ -147,6 +137,7 @@ nav div {
 
 nav a {
   margin: 20px;
+  font-size: large;
 }
 
 nav img {
