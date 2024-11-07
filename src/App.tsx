@@ -7,7 +7,7 @@ import Page404 from './pages/Page404';
 
 const App: React.FC = () => {
   return (
-    <div>
+    <div className='h-100 flex-column'>
       <nav>
         <ul>
           <li><Link to="/">Accueil</Link></li>
