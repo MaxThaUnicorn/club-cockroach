@@ -23,11 +23,9 @@ a:hover {
 }
 
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
+  width: 100%;
   min-height: 100vh;
+  margin: 0;
 }
 
 h1 {
@@ -65,4 +63,21 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+/* classe générale */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+/* Page d'accueil */
+
+.Accueil {
+  background-color: aquamarine;
+  width: 100%;
 }
