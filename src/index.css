@@ -33,8 +33,37 @@ body {
   margin: 0;
 }
 
-/* Connexion */
+/* classes générales */
+* {
+  margin: 0;
+  padding: 0;
+}
 
+#root {
+  min-height: 100vh
+}
+
+.h-100 {
+  min-height: 100vh
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-grow {
+  flex-grow: 1;
+}
+
+/* Connexion */
+.backgroundConnexion{
+  background-image: url('./assets/img/title-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  width: 100%;
+}
 .formConnexion{
   width: 100vh;
   height: 100vh;
@@ -61,13 +90,16 @@ body {
   height: 15px;
   padding: 10px;
   border: 2px solid #ccc;
+  background-color: #000;
+  color: #fff;
   border-radius: 15px;
   margin-bottom: 5px;
 }
 
 .formConnexion button{
   margin-top: 10px;
-  background-color: #646cff;
+  background-image: url('./assets/img/accueil-bg.jpg');
+  background-position: center;
   color: #ffffff;
 }
 
@@ -145,7 +177,6 @@ nav img {
 }
 
 /* Page d'accueil */
-
 .Accueil {
   background-image: url('./assets/img/accueil-bg.jpg');
     background-size: cover;
