@@ -30,6 +30,15 @@ body {
   min-height: 100vh;
 }
 
+/* Connexion */
+
+.connexion{
+  width: 100%;
+  margin: auto;
+  background-color: #888;
+}
+
+
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
