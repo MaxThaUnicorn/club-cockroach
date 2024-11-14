@@ -6,7 +6,9 @@ interface PersonnageProps {
 
 const Personnage: React.FC<PersonnageProps> = ({userId}) => {
   return (
-    <div id={userId} className='personnage'></div>
+    <div id={userId} className='personnage'>
+      <p className='nomPersonnage'></p>
+    </div>
   );
 };
 
