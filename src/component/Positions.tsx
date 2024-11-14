@@ -22,6 +22,8 @@ const updatePosition = async () => {
 }
 
 const initializePositions = () => {
+  let currentUserId = '1018820439746478081';
+
   updatePosition();
 
   document.getElementsByClassName('contenu-jeu')[0].addEventListener('click', (event) => {
