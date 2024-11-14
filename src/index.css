@@ -18,25 +18,10 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #f9f9f9;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #FFD700;
-}
-
-body {
-  width: 100%;
-  min-height: 100vh;
-  margin: 0;
-}
-
 /* classes générales */
 
 .gris {
-  background-color: #ccc;
+  background-color: #0a380a;
 }
 
 * {
@@ -61,7 +46,74 @@ body {
   flex-grow: 1;
 }
 
+a {
+  font-weight: 500;
+  color: #f9f9f9;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #FFD700;
+}
+
+body {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 2px solid white;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: rgb(128,128,128);
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+
+button:hover {
+  border-color: #FFD700;
+}
+
+button:focus, button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+/* nav */
+
+nav{
+  justify-content: space-between;
+  align-items: center;
+  height: 8vh;
+  background-image: url('./assets/img/title-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+nav div {
+  display: flex;
+  align-items: center;
+}
+
+nav a {
+  margin: 20px;
+  font-size: large;
+}
+
+nav img {
+  width: 40px;
+}
+
 /* Connexion */
+
 .backgroundConnexion{
   background-image: url('./assets/img/title-bg.jpg');
     background-size: cover;
@@ -106,79 +158,6 @@ body {
   background-image: url('./assets/img/accueil-bg.jpg');
   background-position: center;
   color: #ffffff;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-/* classes générales */
-* {
-  margin: 0;
-  padding: 0;
-}
-
-#root {
-  min-height: 100vh
-}
-
-.h-100 {
-  min-height: 100vh
-}
-
-.flex-column {
-  display: flex;
-  flex-direction: column;
-}
-
-.flex-grow {
-  flex-grow: 1;
-}
-
-/* nav */
-
-nav{
-  justify-content: space-between;
-  align-items: center;
-  height: 8vh;
-  background-image: url('./assets/img/title-bg.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-nav div {
-  display: flex;
-  align-items: center;
-}
-
-nav a {
-  margin: 20px;
-  font-size: large;
-}
-
-nav img {
-  width: 40px;
 }
 
 /* Page d'accueil */
@@ -232,6 +211,32 @@ nav img {
 /* Messagerie */
 
 .boxMessagerie {
-  background-color: rgba(0, 0, 0, 0.5);
-  width: 20%;
+  background-color: rgba(128,128,128,0.8);
+  width: 25%;
+  position: absolute;
+  right: 0;
+  bottom: 80px;
+}
+
+.formMessagerie {
+  width: 25%;
+  position: absolute;
+  right: 0;
+  bottom: 20px;
+  display: flex;
+  justify-content: end;
+}
+
+.formMessagerie input {
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.87);
+  border-radius: 8px;
+  color: #000;
+}
+
+.formMessagerie button {
+  margin-right: 10px;
+  margin-left: 5px;
+  font-size: 0.7em;
+  font-weight: 500;
 }
