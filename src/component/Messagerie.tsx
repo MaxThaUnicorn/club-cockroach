@@ -6,15 +6,16 @@ export default function Messagerie({ titre } : MessagerieProps) {
 
     const postMessage = async (event) => { {
         event.preventDefault();
+        let message = event.target.message.value;
         
         try {
-            const response = await fetch('/api/createMessage', {
+            const response = await fetch('http://localhost:5000/api/createMessage ', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    id_user: userId, // Assurez-vous que l'ID utilisateur est correct
+                    id_user: "1018820439746478081", 
                     message: message,
                 }),
             });
@@ -36,7 +37,7 @@ export default function Messagerie({ titre } : MessagerieProps) {
                 <p>{titre}</p>
             </div>
             <form className="formMessagerie" onSubmit={postMessage}>
-                <input type="text" placeholder=" Message"/>
+                <input name="message" type="text" placeholder=" Message"/>
                 <button>Envoyer</button>
             </form>
         </section>
