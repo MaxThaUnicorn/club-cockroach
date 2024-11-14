@@ -5,6 +5,8 @@ import Accueil from './pages/Accueil';
 import Connexion from './pages/Connexion';
 import Page404 from './pages/Page404';
 import Propos from './pages/propos';
+import Personnage from './pages/Personnage';
+import Lobby from './pages/Lobby';
 
 const App: React.FC = () => {
   const location = useLocation();
@@ -16,6 +18,8 @@ const App: React.FC = () => {
         <ul>
           <li><Link to="/">Accueil</Link></li>
           <li><Link to="/connexion">Connexion</Link></li>
+          <li><Link to="/personnage">Personnage</Link></li>
+          <li><Link to="/lobby">Lobby</Link></li>
         </ul>
       </nav>
 
@@ -23,6 +27,8 @@ const App: React.FC = () => {
         <Route path={ROUTES.ACCUEIL} element={<Accueil />} />
         <Route path={ROUTES.CONNEXION} element={<Connexion />} />
         <Route path={ROUTES.PROPOS} element={<Propos />} />
+        <Route path={ROUTES.PERSONNAGE} element={<Personnage />} />
+        <Route path={ROUTES.LOBBY} element={<Lobby />} />
 
         <Route path="*" element={<Page404 />} />
       </Routes>
