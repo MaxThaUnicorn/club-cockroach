@@ -4,7 +4,7 @@ import { ROUTES } from './routes';
 import Accueil from './pages/Accueil';
 import Connexion from './pages/Connexion';
 import Page404 from './pages/Page404';
-import Propos from './pages/propos';
+import Propos from './pages/Propos';
 import cockroachImg from './assets/img/cockroach.png';
 
 const App: React.FC = () => {
