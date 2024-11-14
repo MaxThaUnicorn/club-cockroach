@@ -5,6 +5,11 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const app = express();
+const cors = require('cors');
+
+app.use(cors()); 
+app.use(express.json()); 
+app.use(express.urlencoded({ extended: true })); 
 
 connectDB();
 
@@ -28,6 +33,13 @@ app.post('/api/data', async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
+
+app.post('/api/connexion', async (req, res) => {
+  const username = req.body.username;
+  const password = req.body.password;
+  res.status(201).json({ username, password});
+
+})
 
 const PORT_API = process.env.PORT_API;
 app.listen(PORT_API, () => {
