@@ -20,11 +20,11 @@
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: #f9f9f9;
   text-decoration: inherit;
 }
 a:hover {
-  color: #535bf2;
+  color: #FFD700;
 }
 
 body {
@@ -34,6 +34,11 @@ body {
 }
 
 /* classes générales */
+
+.gris {
+  background-color: #ccc;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -127,6 +132,55 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+/* classes générales */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  min-height: 100vh
+}
+
+.h-100 {
+  min-height: 100vh
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-grow {
+  flex-grow: 1;
+}
+
+/* nav */
+
+nav{
+  justify-content: space-between;
+  align-items: center;
+  height: 8vh;
+  background-image: url('./assets/img/title-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+nav div {
+  display: flex;
+  align-items: center;
+}
+
+nav a {
+  margin: 20px;
+  font-size: large;
+}
+
+nav img {
+  width: 40px;
+}
+
 /* Page d'accueil */
 .Accueil {
   background-image: url('./assets/img/accueil-bg.jpg');
@@ -173,5 +227,11 @@ button:focus-visible {
 
 .Accueil a:hover {
   border: 2px solid #FFD700;
-  color: #FFD700;
+}
+
+/* Messagerie */
+
+.boxMessagerie {
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 20%;
 }
