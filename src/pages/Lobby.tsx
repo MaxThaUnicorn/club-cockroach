@@ -55,10 +55,7 @@ const Lobby: React.FC = () => {
           position_y: posY | 0
         })
       })
-      .then(res => res.json())
-      .then(data => {
-        
-      });
+      .then(res => res.json());
     });
   }, []);
   return (
