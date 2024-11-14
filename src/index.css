@@ -67,7 +67,7 @@ body {
 
 /* Connexion */
 .backgroundConnexion{
-  background-image: url('./assets/img/title-bg.jpg');
+  background-color: #0a380a;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
