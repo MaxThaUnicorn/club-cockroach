@@ -36,6 +36,10 @@ app.get('/api/positions', async (req, res) => {
   }
 });
 
+app.post('/api/position', async (req, res) => {
+
+});
+
 app.post('/api/data', async (req, res) => {
   const { name } = req.body;
   try {
