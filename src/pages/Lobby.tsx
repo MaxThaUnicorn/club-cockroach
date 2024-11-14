@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import Personnage from '../component/Personnage';
+import Messagerie from '../component/Messagerie';
 
 const Lobby: React.FC = () => {
   const updatePosition = async () => {
@@ -20,6 +21,7 @@ const Lobby: React.FC = () => {
   return (
     <div className='conteneur-jeu'>
       <div className='contenu-jeu imageBackgroundLobby'>
+        <Messagerie></Messagerie>
         <Personnage />
       </div>
     </div>
