@@ -2,16 +2,35 @@ import express from 'express';
 import { client, connectDB, disconnectDB } from './db';
 import dotenv from 'dotenv';
 import bodyParser from 'body-parser';
+import cors from "cors";
 
 dotenv.config();
 
 const app = express();
+
+
+app.use(cors({
+  origin: 'http://localhost:' + process.env.PORT,
+  methods: ['GET', 'POST'],
+})); 
+app.use(express.json()); 
+app.use(express.urlencoded({ extended: true })); 
 
 connectDB();
 
 app.get('/api/data', async (req, res) => {
   try {
     const result = await client.query('SELECT * FROM users');
+    res.json(result.rows);
+  } catch (err) {
+    console.error('Erreur:', err);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+app.get('/api/positions', async (req, res) => {
+  try {
+    const result = await client.query('SELECT * FROM positions');
     res.json(result.rows);
   } catch (err) {
     console.error('Erreur:', err);
@@ -42,6 +61,13 @@ app.post('/api/createMessage', bodyParser.json(), async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
+
+app.post('/api/connexion', async (req, res) => {
+  const username = req.body.username;
+  const password = req.body.password;
+  res.status(201).json({ username, password});
+
+})
 
 const PORT_API = process.env.PORT_API;
 app.listen(PORT_API, () => {
