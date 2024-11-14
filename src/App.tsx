@@ -6,7 +6,7 @@ import Connexion from './pages/Connexion';
 import Page404 from './pages/Page404';
 
 import Propos from './pages/Propos';
-import cockroachImg from './assets/img/cockroach.png';
+import cockroachImg from './assets/img/icon.png';
 import Personnage from './pages/Personnage';
 import Lobby from './pages/Lobby';
 
