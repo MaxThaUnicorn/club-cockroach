@@ -7,7 +7,10 @@ dotenv.config();
 const app = express();
 
 
-app.use(cors); 
+app.use(cors({
+  origin: 'http://localhost:' + process.env.PORT,
+  methods: ['GET', 'POST'],
+})); 
 app.use(express.json()); 
 app.use(express.urlencoded({ extended: true })); 
 
@@ -16,6 +19,16 @@ connectDB();
 app.get('/api/data', async (req, res) => {
   try {
     const result = await client.query('SELECT * FROM users');
+    res.json(result.rows);
+  } catch (err) {
+    console.error('Erreur:', err);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+app.get('/api/positions', async (req, res) => {
+  try {
+    const result = await client.query('SELECT * FROM positions');
     res.json(result.rows);
   } catch (err) {
     console.error('Erreur:', err);
