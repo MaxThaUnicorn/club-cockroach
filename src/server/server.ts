@@ -62,10 +62,15 @@ app.post('/api/createMessage', bodyParser.json(), async (req, res) => {
   }
 });
 
-app.post('/api/connexion', async (req, res) => {
-  const username = req.body.username;
-  const password = req.body.password;
-  res.send({ username, password});
+app.post('/api/connexion', bodyParser.json(), async (req, res) => {
+    const { username, password } = req.body;
+    console.log('Reçu:', { username, password });
+  try {
+    res.status(201).send({ username, password});
+  }catch(err){
+    res.status(500).send({ error: 'Internal Server Error' });
+  }
+  
 
 })
 
