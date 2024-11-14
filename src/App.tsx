@@ -4,9 +4,8 @@ import { ROUTES } from './routes';
 import Accueil from './pages/Accueil';
 import Connexion from './pages/Connexion';
 import Page404 from './pages/Page404';
-
 import Propos from './pages/Propos';
-import cockroachImg from './assets/img/cockroach.png';
+import cockroachImg from './assets/img/icon.png';
 import Lobby from './pages/Lobby';
 
 
