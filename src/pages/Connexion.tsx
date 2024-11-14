@@ -10,7 +10,13 @@ const Connexion: React.FC = () => {
 
         fetch('http://localhost:3000/api/connexion', {
             method: 'POST',
-            body: formData
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept' : 'application/json',
+            },
+            body: JSON.stringify({
+                formData
+            })
         })
         .then(response => response.json())
         .then(data => {

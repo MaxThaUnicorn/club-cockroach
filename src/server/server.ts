@@ -50,7 +50,7 @@ app.post('/api/data', async (req, res) => {
 app.post('/api/connexion', async (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
-  res.status(201).send({ username, password});
+  res.send({ username, password});
 
 })
 
