@@ -5,7 +5,7 @@ const Lobby: React.FC = () => {
   var currentUserId = '1018820439746478081';
 
   const updatePosition = async () => {
-    /*fetch(`http://localhost:5000/api/positions`, {
+    fetch('http://localhost:5000/api/positions', {
       method: 'GET',
       headers: {
         'Accept': 'application/json; charset=utf-8',
@@ -22,7 +22,7 @@ const Lobby: React.FC = () => {
           userElement.style.left = user.position_x + '%';
         }
       }
-    });*/
+    });
   }
 
   useEffect(() => {
@@ -41,7 +41,7 @@ const Lobby: React.FC = () => {
         currentUser.style.top = posY + '%';
       }
 
-      fetch(`http://localhost:5000/api/position`, {
+      fetch('http://localhost:5000/api/position', {
         method: 'POST',
         headers: {
           'Accept': 'application/json; charset=utf-8',
@@ -49,20 +49,13 @@ const Lobby: React.FC = () => {
         },
         body: JSON.stringify({
           user_id: currentUserId,
-          position_x: posX,
-          position_y: posY
+          position_x: posX | 0,
+          position_y: posY | 0
         })
       })
       .then(res => res.json())
       .then(data => {
-        for (const user of data) {
-          let userElement = document.getElementById(user.user_id);
-  
-          if (userElement) {
-            userElement.style.top = user.position_y + '%';
-            userElement.style.left = user.position_x + '%';
-          }
-        }
+        
       });
     });
   }, []);

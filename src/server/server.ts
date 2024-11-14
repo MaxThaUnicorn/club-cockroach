@@ -38,8 +38,14 @@ app.get('/api/positions', async (req, res) => {
   }
 });
 
-app.post('/api/position', async (req, res) => {
-
+app.post('/api/position', bodyParser.json(), async (req, res) => {
+  try {
+    await client.query('UPDATE positions SET position_x = ($1), position_y = ($2) WHERE user_id = ($3)', [req.body.position_x, req.body.position_y, req.body.user_id]);
+    res.status(201).json({ message: 'Position mise à jour avec succès!' });
+  } catch (err) {
+    console.error('Erreur:', err);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
 });
 
 app.post('/api/data', async (req, res) => {
