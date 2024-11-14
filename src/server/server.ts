@@ -48,11 +48,11 @@ app.post('/api/position', bodyParser.json(), async (req, res) => {
   }
 });
 
-app.post('/api/data', async (req, res) => {
-  const { name } = req.body;
+//Select tous les messages
+app.get('/api/messages', async (req, res) => {
   try {
-    await client.query('INSERT INTO your_table (name) VALUES ($1)', [name]);
-    res.status(201).json({ message: 'Data inserted successfully!' });
+    const result = await client.query('SELECT messages.id, messages.message, messages.user_id, messages.time, users.username FROM messages INNER JOIN users ON messages.user_id = users.id ORDER BY time');
+    res.json(result.rows);
   } catch (err) {
     console.error('Erreur:', err);
     res.status(500).json({ error: 'Internal Server Error' });
@@ -63,8 +63,9 @@ app.post('/api/data', async (req, res) => {
 app.post('/api/createMessage', bodyParser.json(), async (req, res) => {
   let user = req.body.id_user;
   let message = req.body.message;
+  let time = req.body.time
   try {
-    await client.query('INSERT INTO messages (user_id, message) VALUES ($1 , $2)', [user, message]);
+    await client.query('INSERT INTO messages (user_id, message, time) VALUES ($1 , $2, $3)', [user, message, time]);
     res.status(201).json({ message: 'Data inserted successfully!' });
   } catch (err) {
     console.error('Erreur:', err);
