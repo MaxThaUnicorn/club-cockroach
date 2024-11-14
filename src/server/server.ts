@@ -1,7 +1,9 @@
 import express from 'express';
 import { client, connectDB, disconnectDB } from './db';
 import dotenv from 'dotenv';
+import bodyParser from 'body-parser';
 import cors from "cors";
+
 dotenv.config();
 
 const app = express();
@@ -40,6 +42,19 @@ app.post('/api/data', async (req, res) => {
   const { name } = req.body;
   try {
     await client.query('INSERT INTO your_table (name) VALUES ($1)', [name]);
+    res.status(201).json({ message: 'Data inserted successfully!' });
+  } catch (err) {
+    console.error('Erreur:', err);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+//Post un message
+app.post('/api/createMessage', bodyParser.json(), async (req, res) => {
+  let user = req.body.id_user;
+  let message = req.body.message;
+  try {
+    await client.query('INSERT INTO messages (user_id, message) VALUES ($1 , $2)', [user, message]);
     res.status(201).json({ message: 'Data inserted successfully!' });
   } catch (err) {
     console.error('Erreur:', err);
