@@ -1,8 +1,12 @@
 import React from 'react';
 
-const Personnage: React.FC = () => {
+interface PersonnageProps {
+  userId: string
+}
+
+const Personnage: React.FC<PersonnageProps> = ({userId}) => {
   return (
-    <div id="1018820439746478081" className='personnage' style={{top: '20%', left: '20%'}}>
+    <div id={userId} className='personnage'>
       <p className='nomPersonnage'></p>
     </div>
   );
