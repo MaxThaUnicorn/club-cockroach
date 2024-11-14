@@ -1,11 +1,13 @@
 import React from 'react';
 
-const Propos: React.FC = () => {
+const Lobby: React.FC = () => {
   return (
-    <div style={{backgroundColor: "red", display: "inline-block", width: "1080px", height: "720px", margin: "auto"}}>
-      <p>123</p>
+    <div className='conteneur-jeu'>
+      <div className='contenu-jeu imageBackgroundLobby'>
+        <div style={{top: '5%', left: '5%'}} className='personnage'></div>
+      </div>
     </div>
   );
 };
 
-export default Propos;
+export default Lobby;
