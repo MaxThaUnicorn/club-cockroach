@@ -3,6 +3,7 @@ import { client, connectDB, disconnectDB } from './db';
 import dotenv from 'dotenv';
 import bodyParser from 'body-parser';
 import cors from "cors";
+import bcrypt from "bcrypt";
 
 dotenv.config();
 
@@ -62,16 +63,39 @@ app.post('/api/createMessage', bodyParser.json(), async (req, res) => {
   }
 });
 
+//Connecte un user
 app.post('/api/connexion', bodyParser.json(), async (req, res) => {
     const { username, password } = req.body;
-    console.log('Reçu:', { username, password });
-  try {
-    res.status(201).send({ username, password});
-  }catch(err){
-    res.status(500).send({ error: 'Internal Server Error' });
-  }
-  
+    
+    try {
+        // On vérifie si le username existe dans la base de données
+        const result = await client.query('SELECT * FROM users WHERE username = $1', [username]);
+        
+        if (result.rows.length === 0) {
+            console.log("utilisateur non trouvé")
+            return res.status(401).json({ error: 'Utilisateur non trouvé' });
+        }else{
+            console.log("Utilisateur trouvé")
+        }
+        
+        //on retourne le user
+        const user = result.rows[0];
+    
+        // Vérifiez le mot de passe du user à celui envoyé depuis le formulaire
+        const isPasswordValid = await bcrypt.compare(password, user.user_password);
+        console.log(isPasswordValid)
+        if (!isPasswordValid) {
+            console.log("Mot de passe incorrect")
+            console.log(user.user_password)
+          return res.status(401).json({ error: 'Mot de passe incorrect' });
+        }
+    
+        res.status(200).json({ message: 'Connexion réussie', user: { id: user.id, username: user.username } });
 
+    } catch (err) {
+        console.error('Erreur:', err);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
 })
 
 const PORT_API = process.env.PORT_API;

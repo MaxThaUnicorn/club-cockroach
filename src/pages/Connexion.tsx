@@ -1,13 +1,19 @@
 import React, { useState } from 'react';
 
 const Connexion: React.FC = () => {
-    const [responseFetch, setResponseFetch] = useState(null);
+    type ResponseType = {
+        id : number, 
+        username : string;
+        password : string,
+        message : string
+    };
+    
+    const [responseFetch, setResponseFetch] = useState<ResponseType | null>(null);
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
 
     const ConnectUser = async (e)=> { {
         e.preventDefault();
-        const username =  e.target.username.value;
-        const password = e.target.password.value;
-
         try{
             const response = await fetch('http://localhost:5000/api/connexion', {
                 method: 'POST',
@@ -21,7 +27,10 @@ const Connexion: React.FC = () => {
             })
             if (response.ok) {
                 const data = await response.json();
-                console.log(data);
+                setResponseFetch(data);
+                setUsername('');
+                setPassword('');
+                console.log(responseFetch)
             } else {
                 console.error('Erreur:', response.statusText);
             }
@@ -33,24 +42,27 @@ const Connexion: React.FC = () => {
     };}
 
     return (
+        
         <div className='backgroundConnexion'>
+            { responseFetch ? (<div>{responseFetch.username} {responseFetch.message}</div>) : ('') }
             <div className='formConnexion'>
                 <h1>Connexion</h1>
                 <p>Page de connexion</p>
                 <form method="post" onSubmit={ConnectUser}>
                     <p>
                         <label>Username:</label>
-                        <input type="text" name='username' />
+                        <input type="text" value={username} onChange={(e)=>setUsername(e.target.value)} name='username' />
                     </p>
                     <p>
                         <label>Password:</label>
-                        <input type="password" name='password' />
+                        <input type="password" value={password} onChange={(e)=>setPassword(e.target.value)} name='password' />
                     </p>
                     <button type="submit">Connexion</button>
                 </form>
-                {responseFetch && <p>Réponse: {JSON.stringify(responseFetch)}</p>}
+            
             </div>
         </div>
+
     );
 };
 
