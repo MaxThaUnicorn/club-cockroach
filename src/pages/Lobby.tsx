@@ -23,6 +23,8 @@ const Lobby: React.FC = () => {
         }
       }
     });
+
+    setTimeout(updatePosition, 10000);
   }
 
   useEffect(() => {
