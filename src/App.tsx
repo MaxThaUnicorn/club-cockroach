@@ -6,7 +6,11 @@ import Connexion from './pages/Connexion';
 import Page404 from './pages/Page404';
 import Propos from './pages/Propos';
 import cockroachImg from './assets/img/icon.png';
-import Lobby from './pages/Lobby';
+
+import Garage from './pages/Salles/Garage';
+import Lobby from './pages/Salles/Lobby';
+import SalleBain from './pages/Salles/SalleBain';
+import TerrainExt from './pages/Salles/TerrainExt';
 
 
 const App: React.FC = () => {
@@ -20,7 +24,7 @@ const App: React.FC = () => {
           <Link to="/"><img src={cockroachImg} alt="icone" /></Link>
           <Link to="/">Accueil</Link>
           <Link to="/propos">À propos</Link>
-          <Link to="/lobby">Lobby</Link>
+          <Link to="/salle/lobby">Lobby</Link>
         </div>
           <Link to="/connexion">Connexion</Link>
       </nav>
@@ -29,7 +33,11 @@ const App: React.FC = () => {
         <Route path={ROUTES.ACCUEIL} element={<Accueil />} />
         <Route path={ROUTES.CONNEXION} element={<Connexion />} />
         <Route path={ROUTES.PROPOS} element={<Propos />} />
+
+        <Route path={ROUTES.GARAGE} element={<Garage />} />
         <Route path={ROUTES.LOBBY} element={<Lobby />} />
+        <Route path={ROUTES.SALLEBAIN} element={<SalleBain />} />
+        <Route path={ROUTES.TERRAINEXT} element={<TerrainExt />} />
 
         <Route path="*" element={<Page404 />} />
       </Routes>
