@@ -3,31 +3,41 @@ import React, { useState } from 'react';
 const Connexion: React.FC = () => {
     const [responseFetch, setResponseFetch] = useState(null);
 
-    function handleSubmit(e) {
+    const ConnectUser = async (e)=> { {
         e.preventDefault();
-        const form = e.target;
-        const formData = new FormData(form);
+        const username =  e.target.username.value;
+        const password = e.target.password.value;
 
-        fetch('http://localhost:3000/api/connexion', {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-            setResponseFetch(data);
-            console.log(data); 
-        })
-        .catch(error => {
-            console.error('Erreur lors de la requête:', error);
-        });
-    }
+        try{
+            const response = await fetch('http://localhost:5000/api/connexion', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    username : username,
+                    password : password,
+                }),
+            })
+            if (response.ok) {
+                const data = await response.json();
+                console.log(data);
+            } else {
+                console.error('Erreur:', response.statusText);
+            }
+            
+        }catch(e){
+            console.error('Error', e)
+        }   
+            
+    };}
 
     return (
         <div className='backgroundConnexion'>
             <div className='formConnexion'>
                 <h1>Connexion</h1>
                 <p>Page de connexion</p>
-                <form method="post" onSubmit={handleSubmit}>
+                <form method="post" onSubmit={ConnectUser}>
                     <p>
                         <label>Username:</label>
                         <input type="text" name='username' />
