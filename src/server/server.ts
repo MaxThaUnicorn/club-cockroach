@@ -18,6 +18,16 @@ app.get('/api/data', async (req, res) => {
   }
 });
 
+app.get('/api/positions', async (req, res) => {
+  try {
+    const result = await client.query('SELECT * FROM positions');
+    res.json(result.rows);
+  } catch (err) {
+    console.error('Erreur:', err);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
 app.post('/api/data', async (req, res) => {
   const { name } = req.body;
   try {
