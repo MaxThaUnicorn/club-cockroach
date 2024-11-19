@@ -62,23 +62,32 @@ app.get('/api/messages', async (req, res) => {
 
 //Post un message
 app.post('/api/createMessage', bodyParser.json(), async (req, res) => {
-  let user = req.body.id_user;
-  let message = req.body.message;
-  let time = req.body.time
-  try {
-    await client.query('INSERT INTO messages (user_id, message, time) VALUES ($1 , $2, $3)', [user, message, time]);
-    res.status(201).json({ message: 'Data inserted successfully!' });
-  } catch (err) {
-    console.error('Erreur:', err);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
+    let user = req.body.id_user;
+    let message = req.body.message;
+    let time = req.body.time
+    try {
+        await client.query('INSERT INTO messages (user_id, message, time) VALUES ($1 , $2, $3)', [user, message, time]);
+        res.status(201).json({ message: 'Data inserted successfully!' });
+    } catch (err) {
+        console.error('Erreur:', err);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
 });
 
-//Enregistrer un user
+//Enregistre un user
 app.post('/api/register', bodyParser.json(), async (req, res) => {
-  const { username, password } = req.body;
-  console.log('Enregistré');
-  console.log(username, password);
+    const { username, email, password } = req.body;
+    console.log('Enregistré');
+    console.log(username, password);
+    const saltRounds = 10;
+    const passwordHash = await bcrypt.hash(password, saltRounds);
+    try {
+        await client.query('INSERT INTO users (username, email, user_password) VALUES ($1 , $2, $3)', username, email, passwordHash);
+        res.status(201).json({ message: 'Votre compte a été créé avec succès.' });
+    } catch (err) {
+        console.error('Erreur:', err);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
 })
 
 
@@ -101,15 +110,14 @@ app.post('/api/connexion', bodyParser.json(), async (req, res) => {
         const user = result.rows[0];
     
         // Vérifiez le mot de passe du user à celui envoyé depuis le formulaire
-        const isPasswordValid = await bcrypt.compare("$2y$12$2YSOb8Lp1UfjnKm9n2thYuW.Cdf.x39a96zP8g.ifMHtjVOBDlilS", user.user_password);
-        console.log(isPasswordValid)
+        const isPasswordValid = await bcrypt.compare(username, user.user_password);
+
         if (!isPasswordValid) {
             console.log("Mot de passe incorrect")
-            console.log(user.user_password)
           return res.status(401).json({ error: 'Mot de passe incorrect' });
         }
     
-        res.status(200).json({ message: 'Connexion réussie', user: { id: user.id, username: user.username } });
+        res.status(200).json({ message: 'Connexion réussie', user: { id: user.id, username: user.username, email: user.email } });
 
     } catch (err) {
         console.error('Erreur:', err);

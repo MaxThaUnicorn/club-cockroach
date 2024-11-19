@@ -45,10 +45,11 @@ const Connexion: React.FC = () => {
     return (
         
         <div className='backgroundConnexion'>
-            { responseFetch ? (<div>{responseFetch.username} {responseFetch.message}</div>) : ('') }
+            
             <div className='formConnexion'>
                 <h1>Connexion</h1>
                 <p>Page de connexion</p>
+                <p>{ responseFetch ? (<div>{responseFetch.username} {responseFetch.message}</div>) : ('') }</p>
                 <form method="post" onSubmit={ConnectUser}>
                     <p>
                         <label>Username:</label>
@@ -60,7 +61,7 @@ const Connexion: React.FC = () => {
                     </p>
                     <button type="submit">Connexion</button>
                 </form>
-                
+
                 <Link to="/register">Créer un compte</Link>        
             </div>
         </div>

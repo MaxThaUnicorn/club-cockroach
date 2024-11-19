@@ -13,6 +13,7 @@ const Register: React.FC = () => {
 
     const [responseFetch, setResponseFetch] = useState<ResponseType | null>(null);
     const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
     const CreateUser = async (e)=> { {
@@ -25,6 +26,7 @@ const Register: React.FC = () => {
                 },
                 body: JSON.stringify({
                     username : username,
+                    email : email,
                     password : password,
                 }),
             })
@@ -32,6 +34,7 @@ const Register: React.FC = () => {
                 const data = await response.json();
                 setResponseFetch(data);
                 setUsername('');
+                setEmail('');
                 setPassword('');
                 console.log(responseFetch)
             } else {
@@ -46,18 +49,23 @@ const Register: React.FC = () => {
 
     return(
         <div className='backgroundConnexion'>
-            { responseFetch ? (<div>{responseFetch.username} {responseFetch.message}</div>) : ('') }
+            
             <div className='formConnexion'>
                 <h1>Créer un nouveau compte</h1>
-                <p>Créer un compte pour pouvoir acceder à l'application. </p>
+                <p>Remplissez les champs correctement.</p>
+                <p>{ responseFetch ? (<div>{responseFetch.username} {responseFetch.message}</div>) : ('') }</p>
                 <form method="post" onSubmit={CreateUser}>
                     <p>
                         <label>Username:</label>
-                        <input type="text" value={username} onChange={(e)=>setUsername(e.target.value)} name='username' />
+                        <input type="text" value={username} onChange={(e)=>setUsername(e.target.value)} name='username' required/>
+                    </p>
+                    <p>
+                        <label>Email:</label>
+                        <input type="email" value={email} onChange={(e)=>setEmail(e.target.value)} name='email' required/>
                     </p>
                     <p>
                         <label>Password:</label>
-                        <input type="password" value={password} onChange={(e)=>setPassword(e.target.value)} name='password' />
+                        <input type="password" value={password} onChange={(e)=>setPassword(e.target.value)} name='password' required/>
                     </p>
                     <button type="submit">Créer un compte</button>
                 </form>
