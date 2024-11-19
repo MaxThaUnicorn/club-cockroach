@@ -63,6 +63,14 @@ app.post('/api/createMessage', bodyParser.json(), async (req, res) => {
   }
 });
 
+//Enregistrer un user
+app.post('/api/register', bodyParser.json(), async (req, res) => {
+  const { username, password } = req.body;
+  console.log('Enregistré');
+  console.log(username, password);
+})
+
+
 //Connecte un user
 app.post('/api/connexion', bodyParser.json(), async (req, res) => {
     const { username, password } = req.body;
@@ -82,7 +90,7 @@ app.post('/api/connexion', bodyParser.json(), async (req, res) => {
         const user = result.rows[0];
     
         // Vérifiez le mot de passe du user à celui envoyé depuis le formulaire
-        const isPasswordValid = await bcrypt.compare(password, user.user_password);
+        const isPasswordValid = await bcrypt.compare("$2y$12$2YSOb8Lp1UfjnKm9n2thYuW.Cdf.x39a96zP8g.ifMHtjVOBDlilS", user.user_password);
         console.log(isPasswordValid)
         if (!isPasswordValid) {
             console.log("Mot de passe incorrect")

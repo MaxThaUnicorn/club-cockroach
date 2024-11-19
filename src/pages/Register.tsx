@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import {Link} from 'react-router-dom';
 
-const Connexion: React.FC = () => {
+const Register: React.FC = () => {
+
     type ResponseType = {
         id : number, 
         username : string;
@@ -9,14 +10,15 @@ const Connexion: React.FC = () => {
         message : string
     };
     
+
     const [responseFetch, setResponseFetch] = useState<ResponseType | null>(null);
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
-    const ConnectUser = async (e)=> { {
+    const CreateUser = async (e)=> { {
         e.preventDefault();
         try{
-            const response = await fetch('http://localhost:5000/api/connexion', {
+            const response = await fetch('http://localhost:5000/api/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -42,14 +44,13 @@ const Connexion: React.FC = () => {
             
     };}
 
-    return (
-        
+    return(
         <div className='backgroundConnexion'>
             { responseFetch ? (<div>{responseFetch.username} {responseFetch.message}</div>) : ('') }
             <div className='formConnexion'>
-                <h1>Connexion</h1>
-                <p>Page de connexion</p>
-                <form method="post" onSubmit={ConnectUser}>
+                <h1>Créer un nouveau compte</h1>
+                <p>Créer un compte pour pouvoir acceder à l'application. </p>
+                <form method="post" onSubmit={CreateUser}>
                     <p>
                         <label>Username:</label>
                         <input type="text" value={username} onChange={(e)=>setUsername(e.target.value)} name='username' />
@@ -58,14 +59,11 @@ const Connexion: React.FC = () => {
                         <label>Password:</label>
                         <input type="password" value={password} onChange={(e)=>setPassword(e.target.value)} name='password' />
                     </p>
-                    <button type="submit">Connexion</button>
+                    <button type="submit">Créer un compte</button>
                 </form>
-                
-                <Link to="/register">Créer un compte</Link>        
             </div>
         </div>
-
     );
 };
 
-export default Connexion;
+export default Register;

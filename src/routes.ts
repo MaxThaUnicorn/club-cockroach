@@ -3,4 +3,5 @@ export const ROUTES = {
   CONNEXION: '/connexion',
   PROPOS: '/propos',
   LOBBY: '/lobby',
+  REGISTER : '/register',
 } as const;

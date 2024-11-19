@@ -7,6 +7,7 @@ import Page404 from './pages/Page404';
 import Propos from './pages/Propos';
 import cockroachImg from './assets/img/icon.png';
 import Lobby from './pages/Lobby';
+import Register from './pages/Register';
 
 
 const App: React.FC = () => {
@@ -30,6 +31,7 @@ const App: React.FC = () => {
         <Route path={ROUTES.CONNEXION} element={<Connexion />} />
         <Route path={ROUTES.PROPOS} element={<Propos />} />
         <Route path={ROUTES.LOBBY} element={<Lobby />} />
+        <Route path={ROUTES.REGISTER} element={<Register />} />
 
         <Route path="*" element={<Page404 />} />
       </Routes>
