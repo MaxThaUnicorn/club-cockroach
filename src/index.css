@@ -121,6 +121,8 @@ nav img {
 /* Connexion */
 
 .backgroundConnexion{
+  width: 100vh;
+  height: 100vh;
   background-color: #0a380a;
     background-size: cover;
     background-position: center;
@@ -129,14 +131,28 @@ nav img {
 }
 .formConnexion{
   width: 100vh;
-  height: 100vh;
+  margin-top: 10px;
+  padding-top: 10px;
   margin: auto;
   text-align: center;
   padding: 10px;
+  border: 1px solid #fff;
+  border-radius: 10px;
+}
+
+.backgroundConnexion h1{ 
+  text-align: center;
+  margin: 30px;
+  padding-top: 30px;
+}
+
+.backgroundConnexion p{ 
+  text-align: center;
+  margin-bottom: 10px;
 }
 
 .formConnexion p{
-  width: 50%;
+  width: 70%;
   margin: auto;
   display: flex;
   flex-direction: column;
@@ -164,6 +180,10 @@ nav img {
   background-image: url('./assets/img/accueil-bg.jpg');
   background-position: center;
   color: #ffffff;
+}
+
+.flex-link{
+  width: 50%;
 }
 
 /* Page d'accueil */

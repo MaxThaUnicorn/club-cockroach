@@ -77,8 +77,6 @@ app.post('/api/createMessage', bodyParser.json(), async (req, res) => {
 //Enregistre un user
 app.post('/api/register', bodyParser.json(), async (req, res) => {
     const { username, email, password } = req.body;
-    console.log('Enregistré');
-    console.log(username, password);
     const saltRounds = 10;
     const passwordHash = await bcrypt.hash(password, saltRounds);
     try {
@@ -100,27 +98,23 @@ app.post('/api/connexion', bodyParser.json(), async (req, res) => {
         const result = await client.query('SELECT * FROM users WHERE username = $1', [username]);
         
         if (result.rows.length === 0) {
-            console.log("utilisateur non trouvé")
+
             return res.status(401).json({ error: 'Utilisateur non trouvé' });
-        }else{
-            console.log("Utilisateur trouvé")
         }
         
-        //on retourne le user
+        //On retourne le user
         const user = result.rows[0];
     
-        // Vérifiez le mot de passe du user à celui envoyé depuis le formulaire
-        const isPasswordValid = await bcrypt.compare(username, user.user_password);
+        // On vérifiez le mot de passe du user à celui envoyé depuis le formulaire
+        const isPasswordValid = await bcrypt.compare(password, user.user_password);
 
         if (!isPasswordValid) {
-            console.log("Mot de passe incorrect")
           return res.status(401).json({ error: 'Mot de passe incorrect' });
         }
     
         res.status(200).json({ message: 'Connexion réussie', user: { id: user.id, username: user.username, email: user.email } });
 
     } catch (err) {
-        console.error('Erreur:', err);
         res.status(500).json({ error: 'Internal Server Error' });
     }
 })
