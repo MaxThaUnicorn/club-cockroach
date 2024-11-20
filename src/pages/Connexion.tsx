@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
 
 const Connexion: React.FC = () => {
     type ResponseType = {
@@ -11,9 +12,11 @@ const Connexion: React.FC = () => {
         message: string;
     };
 
+    const [cookies, setCookie] = useCookies(['authToken']);
     const [responseFetch, setResponseFetch] = useState<ResponseType | null>(null);
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState<string | null>(null);
 
     const ConnectUser = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -31,11 +34,14 @@ const Connexion: React.FC = () => {
 
             if (response.ok) {
                 const data = await response.json();
+                setCookie('username', data.user.username, { path: '/', maxAge: 3600 });
+                setCookie('email', data.user.email, { path: '/', maxAge: 3600 });
                 setResponseFetch(data);
                 setUsername('');
                 setPassword('');
             } else {
                 const errorData = await response.json();
+                setError(errorData.error);
                 setResponseFetch({ user: null, message: errorData.error });
             }
         } catch (e) {
@@ -55,7 +61,7 @@ const Connexion: React.FC = () => {
                     <p>Email: {responseFetch.user.email}</p>
                 </div>
             )}
-
+            
             <div className="formConnexion">
                 <p>{responseFetch ? <div>{responseFetch.message}</div> : ''}</p>
                 <form method="post" onSubmit={ConnectUser}>
