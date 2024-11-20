@@ -76,15 +76,35 @@ app.post('/api/createMessage', bodyParser.json(), async (req, res) => {
 
 //Enregistre un user
 app.post('/api/register', bodyParser.json(), async (req, res) => {
+
     const { username, email, password } = req.body;
     const saltRounds = 10;
     const passwordHash = await bcrypt.hash(password, saltRounds);
+
     try {
+
+        const resultUsername = await client.query('SELECT * FROM users WHERE username = $1', [username]);
+        const resultEmail = await client.query('SELECT * FROM users WHERE email = $1', [email]);
+
+        if (resultUsername.rows.length > 0) {
+
+            return res.status(401).json({ message: 'Le nom d\'utilisateur est déjà pris.' });
+
+        }else if (resultEmail.rows.length > 0) {
+
+            return res.status(401).json({ message: 'L\'email est déjà associé à un autre compte.' });
+
+        }
+
         await client.query('INSERT INTO users (username, email, user_password) VALUES ($1 , $2, $3)', username, email, passwordHash);
+
         res.status(201).json({ message: 'Votre compte a été créé avec succès.' });
+
     } catch (err) {
+
         console.error('Erreur:', err);
         res.status(500).json({ error: 'Internal Server Error' });
+
     }
 })
 
@@ -99,7 +119,7 @@ app.post('/api/connexion', bodyParser.json(), async (req, res) => {
         
         if (result.rows.length === 0) {
 
-            return res.status(401).json({ error: 'Utilisateur non trouvé' });
+            return res.status(401).json({ error: 'Aucun utilisateur ne correspond a ce compte.' });
         }
         
         //On retourne le user
@@ -109,7 +129,7 @@ app.post('/api/connexion', bodyParser.json(), async (req, res) => {
         const isPasswordValid = await bcrypt.compare(password, user.user_password);
 
         if (!isPasswordValid) {
-          return res.status(401).json({ error: 'Mot de passe incorrect' });
+          return res.status(401).json({ error: 'Nom d\'utilisateur ou mot de passe incorrect' });
         }
     
         res.status(200).json({ message: 'Connexion réussie', user: { id: user.id, username: user.username, email: user.email } });

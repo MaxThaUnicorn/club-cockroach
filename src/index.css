@@ -135,9 +135,8 @@ nav img {
   padding-top: 10px;
   margin: auto;
   text-align: center;
-  padding: 10px;
-  border: 1px solid #fff;
-  border-radius: 10px;
+  padding: 25px;
+
 }
 
 .backgroundConnexion h1{ 
@@ -152,7 +151,7 @@ nav img {
 }
 
 .formConnexion p{
-  width: 70%;
+  width: 60%;
   margin: auto;
   display: flex;
   flex-direction: column;

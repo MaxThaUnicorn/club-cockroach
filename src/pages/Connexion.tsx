@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 
 const Connexion: React.FC = () => {
@@ -17,6 +17,7 @@ const Connexion: React.FC = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState<string | null>(null);
+    const navigate = useNavigate();
 
     const ConnectUser = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -39,6 +40,7 @@ const Connexion: React.FC = () => {
                 setResponseFetch(data);
                 setUsername('');
                 setPassword('');
+                navigate('/lobby');
             } else {
                 const errorData = await response.json();
                 setError(errorData.error);

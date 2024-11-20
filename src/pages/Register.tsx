@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import {Link} from 'react-router-dom';
+import {Link, useLocation} from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 
 const Register: React.FC = () => {
+    const navigate = useLocation();
 
     type ResponseType = {
         id : number, 
@@ -11,9 +12,6 @@ const Register: React.FC = () => {
         message : string
     };
     
-    const [cookies] = useCookies(['authToken']);
-    const authToken = cookies.authToken;
-
     const [responseFetch, setResponseFetch] = useState<ResponseType | null>(null);
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
@@ -39,7 +37,7 @@ const Register: React.FC = () => {
                 setUsername('');
                 setEmail('');
                 setPassword('');
-                console.log(responseFetch)
+                navigate('/connexion');
             } else {
                 console.error('Erreur:', response.statusText);
             }
@@ -54,7 +52,6 @@ const Register: React.FC = () => {
         <div className='backgroundConnexion'>
             <h1>Créer un nouveau compte</h1>
             <p>Remplissez les champs correctement.</p>
-            {authToken ? <p>Token : {authToken}</p> : <p>Non connecté</p>}
             <div className='formConnexion'>
                 <p>{ responseFetch ? (<div>{responseFetch.username} {responseFetch.message}</div>) : ('') }</p>
                 <form method="post" onSubmit={CreateUser}>

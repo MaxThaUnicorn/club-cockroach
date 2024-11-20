@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Routes, Link, useLocation} from 'react-router-dom';
+import { Route, Routes, Link, useLocation, useNavigate} from 'react-router-dom';
 import { ROUTES } from './routes';
 import Accueil from './pages/Accueil';
 import Connexion from './pages/Connexion';
@@ -15,15 +15,16 @@ import TerrainExt from './pages/Salles/TerrainExt';
 import { CookiesProvider } from 'react-cookie';
 import { useCookies } from 'react-cookie';
 
-
 const App: React.FC = () => { 
   const location = useLocation();
   const pageAccueil = location.pathname === '/';
   const [cookies, setCookie, removeCookie] = useCookies(['username']);
+  const navigate = useNavigate(); 
 
   const handleLogout = () => {
     removeCookie('username', { path: '/' });
     removeCookie('email', { path: '/' });
+    navigate('/connexion'); 
   };
 
 
