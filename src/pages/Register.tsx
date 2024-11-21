@@ -37,7 +37,7 @@ const Register: React.FC = () => {
                 setUsername('');
                 setEmail('');
                 setPassword('');
-                navigate('/connexion');
+                //navigate('/connexion');
             } else {
                 console.error('Erreur:', response.statusText);
             }
@@ -47,6 +47,8 @@ const Register: React.FC = () => {
         }   
             
     };}
+
+    console.log(responseFetch);
 
     return(
         <div className='backgroundConnexion'>
