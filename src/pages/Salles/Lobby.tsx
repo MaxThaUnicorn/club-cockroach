@@ -15,7 +15,6 @@ const Lobby: React.FC = () => {
   return (
     <div className='conteneur-jeu'>
       <div className='contenu-jeu' style={{backgroundImage: `url(${Background})`}}>
-        <Personnage userId={cookies.id} />
         <Messagerie></Messagerie>
       </div>
     </div>
