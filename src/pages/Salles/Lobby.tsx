@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
+import Personnage from '../../component/Personnage';
 import Background from '../../assets/img/vieux-plancher-sale.jpg';
 import initializePositions from '../../component/Positions';
 import Messagerie from '../../component/Messagerie';
@@ -6,7 +7,7 @@ import { useCookies } from 'react-cookie';
 import Personnage from '../../component/Personnage';
 
 const Lobby: React.FC = () => {
-  const [cookies] = useCookies();
+    const [cookies] = useCookies();
 
   useEffect(() => {
     initializePositions(cookies.id);

@@ -37,7 +37,7 @@ const Connexion: React.FC = () => {
                 const data = await response.json();
                 setCookie('username', data.user.username, { path: '/', maxAge: 3600 });
                 setCookie('email', data.user.email, { path: '/', maxAge: 3600 });
-                setCookie('id', data.user.id, { path: '/', maxAge: 3600 });
+                setCookie('id', Number(data.user.id), { path: '/', maxAge: 3600 });
                 setResponseFetch(data);
                 setUsername('');
                 setPassword('');
