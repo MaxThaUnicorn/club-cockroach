@@ -24,7 +24,7 @@ const updatePosition = async () => {
     }
   });
 
-  setTimeout(updatePosition, 10000);
+  setTimeout(updatePosition, 2000);
 }
 
 const intatiatePersonnage = (userId: string) => {
@@ -34,9 +34,7 @@ const intatiatePersonnage = (userId: string) => {
 
   ReactDOM.createRoot(nouveauDivPersonnage).render(<Personnage userId={userId}/>);
 
-  if (nouveauDivPersonnage.firstElementChild) {
-    containerJeu.appendChild(nouveauDivPersonnage.firstElementChild);
-  }
+  containerJeu.appendChild(nouveauDivPersonnage);
 }
 
 const initializePositions = (currentUserId: string) => {
