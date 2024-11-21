@@ -29,15 +29,22 @@ const initializePositions = () => {
   document.getElementsByClassName('contenu-jeu')[0].addEventListener('click', (event) => {
     let currentUser = document.getElementById(currentUserId);
 
+    if (!currentUser) return;
+
     const rect = event.currentTarget.getBoundingClientRect();
 
     let posX = (event.clientX - rect.left) / rect.width * 100 - ((currentUser.offsetWidth / rect.width) * 100 / 2);
     let posY = (event.clientY - rect.top) / rect.height * 100 - ((currentUser.offsetHeight / rect.height) * 100 / 2);
 
-    if (currentUser) {
-      currentUser.style.left = posX + '%';
-      currentUser.style.top = posY + '%';
-    }
+    const currentX = parseFloat(currentUser.style.left);
+    const currentY = parseFloat(currentUser.style.top);
+
+    const direction = calculAngleDirection(currentX, currentY, posX, posY);
+
+    currentUser.style.transform = `rotate(${direction}deg)`;
+
+    currentUser.style.left = `${posX}%`;
+    currentUser.style.top = `${posY}%`;
 
     fetch('http://localhost:5000/api/position', {
       method: 'POST',
@@ -53,6 +60,13 @@ const initializePositions = () => {
     })
     .then(res => res.json());
   });
+}
+
+const calculAngleDirection = (posX: number, posY: number, targetX: number, targetY: number) => {
+  const deltaX = targetX - posX;
+  const deltaY = targetY - posY;
+
+  return Math.atan2(deltaY, deltaX) * (180 / Math.PI);
 }
 
 export default initializePositions;

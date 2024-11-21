@@ -272,6 +272,8 @@ nav img {
   background-repeat: no-repeat;
   transform: rotate(315deg);
   filter: drop-shadow(5px 5px 5px #000);
+
+  transition: transform 0.3s ease, left 0.3s ease, top 0.3s ease;
 }
 
 .nomPersonnage {
