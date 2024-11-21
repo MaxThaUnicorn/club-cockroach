@@ -21,9 +21,7 @@ const updatePosition = async () => {
   setTimeout(updatePosition, 10000);
 }
 
-const initializePositions = () => {
-  let currentUserId = '1018820439746478081';
-
+const initializePositions = (currentUserId: string) => {
   updatePosition();
 
   document.getElementsByClassName('contenu-jeu')[0].addEventListener('click', (event) => {

@@ -3,18 +3,19 @@ import Personnage from '../../component/Personnage';
 import Background from '../../assets/img/vieux-plancher-sale.jpg';
 import initializePositions from '../../component/Positions';
 import Messagerie from '../../component/Messagerie';
+import { useCookies } from 'react-cookie';
 
 const Lobby: React.FC = () => {
-  var currentUserId = '1018820439746478081';
+  const [cookies] = useCookies();
 
   useEffect(() => {
-    initializePositions();
-  }, []);
+    initializePositions(cookies.id);
+  }, [cookies]);
   
   return (
     <div className='conteneur-jeu'>
       <div className='contenu-jeu' style={{backgroundImage: `url(${Background})`}}>
-        <Personnage userId={currentUserId} />
+        <Personnage userId={cookies.id} />
         <Messagerie></Messagerie>
       </div>
     </div>
