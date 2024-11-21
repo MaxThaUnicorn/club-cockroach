@@ -41,7 +41,7 @@ const Connexion: React.FC = () => {
                 setResponseFetch(data);
                 setUsername('');
                 setPassword('');
-                navigate('/lobby');
+                navigate('/salle/lobby');
             } else {
                 const errorData = await response.json();
                 setError(errorData.error);
