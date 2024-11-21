@@ -40,11 +40,11 @@ const intatiatePersonnage = (userId: string) => {
 }
 
 const initializePositions = (currentUserId: string) => {
+  intatiatePersonnage(currentUserId);
+
   updatePosition();
 
   let containerJeu = document.getElementsByClassName('contenu-jeu')[0];
-
-  intatiatePersonnage(currentUserId);
 
   containerJeu.addEventListener('click', (event) => {
     let currentUser = document.getElementById(currentUserId);
