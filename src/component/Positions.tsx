@@ -27,15 +27,26 @@ const initializePositions = (currentUserId: string) => {
   document.getElementsByClassName('contenu-jeu')[0].addEventListener('click', (event) => {
     let currentUser = document.getElementById(currentUserId);
 
-    if (!currentUser) return;
+    if (!currentUser) {
+      console.error("Erreur lors de la récupération de l'utilisateur") 
+      return;
+    }
 
     const rect = event.currentTarget.getBoundingClientRect();
 
     let posX = (event.clientX - rect.left) / rect.width * 100 - ((currentUser.offsetWidth / rect.width) * 100 / 2);
     let posY = (event.clientY - rect.top) / rect.height * 100 - ((currentUser.offsetHeight / rect.height) * 100 / 2);
 
-    const currentX = parseFloat(currentUser.style.left);
-    const currentY = parseFloat(currentUser.style.top);
+    var currentX = parseFloat(currentUser.style.left);
+    var currentY = parseFloat(currentUser.style.top);
+
+    if(isNaN(currentX)){
+      currentX = 0;
+    }
+    
+    if(isNaN(currentY)){
+      currentY = 0;
+    }
 
     const direction = calculAngleDirection(currentX, currentY, posX, posY);
 
@@ -64,7 +75,9 @@ const calculAngleDirection = (posX: number, posY: number, targetX: number, targe
   const deltaX = targetX - posX;
   const deltaY = targetY - posY;
 
-  return Math.atan2(deltaY, deltaX) * (180 / Math.PI);
+  let angle = (Math.atan2(deltaY, deltaX) * (180 / Math.PI));
+
+  return angle;
 }
 
 export default initializePositions;

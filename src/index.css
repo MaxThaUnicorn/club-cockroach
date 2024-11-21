@@ -270,15 +270,14 @@ nav img {
   background-image: url('./assets/img/cockroach.png');
   background-size: contain;
   background-repeat: no-repeat;
-  transform: rotate(315deg);
   filter: drop-shadow(5px 5px 5px #000);
-
   transition: transform 0.3s ease, left 0.3s ease, top 0.3s ease;
+  transform-origin: center;
 }
 
 .nomPersonnage {
   position: absolute;
-  transform: rotate(45deg);
+  /*transform: rotate(45deg);*/
   color: var(--vertForet);
   text-align: center;
   width: 150%;
