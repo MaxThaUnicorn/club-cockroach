@@ -19,7 +19,7 @@ const updatePosition = async () => {
         userElement.style.left = user.position_x + '%';
       }
       else {
-        //intatiatePersonnage(user.user_id);
+        intatiatePersonnage(user.user_id, "default");
       }
     }
   });
