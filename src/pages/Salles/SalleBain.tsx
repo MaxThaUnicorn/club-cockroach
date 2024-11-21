@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import Personnage from '../../component/Personnage';
 import Background from '../../assets/img/plancher-salle-bain.jpg';
 import initializePositions from '../../component/Positions';
 import { useCookies } from 'react-cookie';
