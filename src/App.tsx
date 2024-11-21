@@ -18,15 +18,16 @@ import { useCookies } from 'react-cookie';
 const App: React.FC = () => { 
   const location = useLocation();
   const pageAccueil = location.pathname === '/';
-  const [cookies, setCookie, removeCookie] = useCookies(['username']);
+  const [cookies, setCookie, removeCookie] = useCookies(['id', 'username', 'email']);
   const navigate = useNavigate(); 
 
   const handleLogout = () => {
-    removeCookie('username', { path: '/' });
-    removeCookie('email', { path: '/' });
+    removeCookie('id', { path: '/' , domain:'localhost'});
+    removeCookie('username', { path: '/', domain:'localhost' });
+    removeCookie('email', { path: '/' , domain:'localhost'});
     navigate('/connexion'); 
   };
-
+console.log(cookies.id)
 
   return (
     <CookiesProvider>
