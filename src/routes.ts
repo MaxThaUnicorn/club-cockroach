@@ -2,7 +2,7 @@ export const ROUTES = {
   ACCUEIL: '/',
   CONNEXION: '/connexion',
   PROPOS: '/propos',
-  LOBBY: '/lobby',
+  LOBBY: '/salle/lobby',
   REGISTER : '/register',
   GARAGE: '/salle/garage',
   SALLEBAIN: '/salle/salle-bain',

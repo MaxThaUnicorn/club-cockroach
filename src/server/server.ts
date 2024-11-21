@@ -12,7 +12,7 @@ const app = express();
 
 app.use(cors({
   origin: 'http://localhost:' + process.env.PORT,
-  methods: ['GET', 'POST'],
+  methods: ['GET', 'POST', 'DELETE'],
 })); 
 app.use(express.json()); 
 app.use(express.urlencoded({ extended: true })); 
@@ -72,6 +72,18 @@ app.post('/api/createMessage', bodyParser.json(), async (req, res) => {
         console.error('Erreur:', err);
         res.status(500).json({ error: 'Internal Server Error' });
     }
+});
+
+//delete message
+app.delete('/api/deleteMessage', bodyParser.json(), async (req, res) => {
+  let id_message = req.body.id_message;
+  try {
+      await client.query('DELETE FROM messages WHERE id = $1', [id_message]);
+      res.status(201).json({ message: 'Data inserted successfully!' });
+  } catch (err) {
+      console.error('Erreur:', err);
+      res.status(500).json({ error: 'Internal Server Error' });
+  }
 });
 
 //Enregistre un user
