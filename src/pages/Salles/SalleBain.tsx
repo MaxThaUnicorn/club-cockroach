@@ -2,18 +2,19 @@ import React, { useEffect } from 'react';
 import Personnage from '../../component/Personnage';
 import Background from '../../assets/img/plancher-salle-bain.jpg';
 import initializePositions from '../../component/Positions';
+import { useCookies } from 'react-cookie';
 
 const SalleBain: React.FC = () => {
-  var currentUserId = '1018820439746478081';
+  const [cookies] = useCookies();
 
   useEffect(() => {
-    initializePositions();
-  }, []);
+    initializePositions(cookies.id);
+  }, [cookies]);
   
   return (
     <div className='conteneur-jeu'>
       <div className='contenu-jeu' style={{backgroundImage: `url(${Background})`}}>
-        <Personnage userId={currentUserId} />
+        <Personnage userId={cookies.id} />
       </div>
     </div>
   );

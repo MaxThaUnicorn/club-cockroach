@@ -12,7 +12,7 @@ const Connexion: React.FC = () => {
         message: string;
     };
 
-    const [cookies, setCookie] = useCookies(['authToken']);
+    const [cookies, setCookie] = useCookies();
     const [responseFetch, setResponseFetch] = useState<ResponseType | null>(null);
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -37,6 +37,7 @@ const Connexion: React.FC = () => {
                 const data = await response.json();
                 setCookie('username', data.user.username, { path: '/', maxAge: 3600 });
                 setCookie('email', data.user.email, { path: '/', maxAge: 3600 });
+                setCookie('id', data.user.id, { path: '/', maxAge: 3600 });
                 setResponseFetch(data);
                 setUsername('');
                 setPassword('');
