@@ -1,16 +1,18 @@
 import React, { useEffect, useRef } from 'react';
 
 interface PersonnageProps {
-  userId: string
+  userId: string,
+  username: string
 }
 
 
-const Personnage: React.FC<PersonnageProps> = ({userId}) => {
+const Personnage: React.FC<PersonnageProps> = ({userId, username}) => {
 
   const personne = useRef<HTMLDivElement | null>(null);
 
     const handlePersonClick = () => {
         alert(userId);
+        alert(username);
     };
 
     useEffect(() => {
@@ -20,7 +22,7 @@ const Personnage: React.FC<PersonnageProps> = ({userId}) => {
 
   return (
     <div id={userId} className='personnage' ref={personne} >
-      <p className='nomPersonnage' onClick={handlePersonClick}></p>
+      <p className='nomPersonnage' onClick={handlePersonClick}>{username}</p>
     </div>
   );
 };
