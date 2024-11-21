@@ -64,7 +64,7 @@ export default function Messagerie() {
 
             setTimeout(() => {
                 getMessages();
-            }, 10000);
+            }, 2000);
     };}
 
     const delMessage = async (id) => { {
