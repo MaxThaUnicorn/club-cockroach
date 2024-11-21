@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import {Link, useLocation} from 'react-router-dom';
-import { useCookies } from 'react-cookie';
+import {Link, useNavigate} from 'react-router-dom';
+
 
 const Register: React.FC = () => {
-    const navigate = useLocation();
+    const navigate = useNavigate();
 
     type ResponseType = {
         id : number, 
