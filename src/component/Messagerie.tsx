@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Cookies, useCookies } from 'react-cookie';
 
 export default function Messagerie() {
     const id_user = sessionStorage.getItem('id');
@@ -17,7 +16,7 @@ export default function Messagerie() {
         let message = event.target.message.value;
         let now = new Date();
         let cinqheuresdemoins = new Date(now.getTime() - 5 * 60 * 60 * 1000)
-        //console.log(cookies);
+
         try {
             const response = await fetch('http://localhost:5000/api/createMessage ', {
                 method: 'POST',
@@ -25,7 +24,7 @@ export default function Messagerie() {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    id_user: "1022782423036723201", 
+                    id_user: id_user, 
                     message: message,
                     time: cinqheuresdemoins, 
                 }),
