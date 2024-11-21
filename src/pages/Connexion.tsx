@@ -34,6 +34,8 @@ const Connexion: React.FC = () => {
             if (response.ok) {
                 const data = await response.json();
                 sessionStorage.setItem('id', data.user.id);
+                sessionStorage.setItem('username', data.user.username);
+                sessionStorage.setItem('email', data.user.email);
                 setResponseFetch(data);
                 setUsername('');
                 setPassword('');
