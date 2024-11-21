@@ -1,5 +1,4 @@
 import React, { useEffect, useRef } from 'react';
-import { useCookies } from 'react-cookie';
 
 interface PersonnageProps {
   userId: string

@@ -1,14 +1,11 @@
 import React, { useEffect } from 'react';
 import Background from '../../assets/img/plancher-terrain-exterieur.jpg';
 import initializePositions from '../../component/Positions';
-import { useCookies } from 'react-cookie';
 
 const TerrainExt: React.FC = () => {
-  const [cookies] = useCookies();
-
   useEffect(() => {
-    initializePositions(cookies.id);
-  }, [cookies]);
+    initializePositions(sessionStorage.getItem('id'));
+  }, []);
   
   return (
     <div className='conteneur-jeu'>

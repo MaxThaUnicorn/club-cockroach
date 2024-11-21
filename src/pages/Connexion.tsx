@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useCookies } from 'react-cookie';
 
 const Connexion: React.FC = () => {
     type ResponseType = {
@@ -12,7 +11,6 @@ const Connexion: React.FC = () => {
         message: string;
     };
 
-    const [cookies, setCookie] = useCookies();
     const [responseFetch, setResponseFetch] = useState<ResponseType | null>(null);
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -35,9 +33,7 @@ const Connexion: React.FC = () => {
 
             if (response.ok) {
                 const data = await response.json();
-                setCookie('username', data.user.username, { path: '/', maxAge: 3600 });
-                setCookie('email', data.user.email, { path: '/', maxAge: 3600 });
-                setCookie('id', Number(data.user.id), { path: '/', maxAge: 3600 });
+                sessionStorage.setItem('id', data.user.id);
                 setResponseFetch(data);
                 setUsername('');
                 setPassword('');
