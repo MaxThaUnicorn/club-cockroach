@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import { Cookies, useCookies } from 'react-cookie';
 
 export default function Messagerie() {
+    const [cookies] = useCookies();
     const [messages, setMessages] = useState([]);
     const box = document.getElementById('sectMessage');
 
@@ -10,12 +12,16 @@ export default function Messagerie() {
         });
     }
 
+    const fadeOut = (): string => {
+          return 'fade-out';
+      };
+
     const postMessage = async (event) => { {
         event.preventDefault();
         let message = event.target.message.value;
         let now = new Date();
         let cinqheuresdemoins = new Date(now.getTime() - 5 * 60 * 60 * 1000)
-        
+        //console.log(cookies);
         try {
             const response = await fetch('http://localhost:5000/api/createMessage ', {
                 method: 'POST',
@@ -53,6 +59,8 @@ export default function Messagerie() {
                     var diff = (now.getTime() - message_time.getTime()) / 1000;
                     
                     if (diff > 30) {
+                        let p = document.getElementById(message.id);
+                        p?.classList.add('fade-out');
                         delMessage(message.id)
                     }
                 }
@@ -93,7 +101,7 @@ export default function Messagerie() {
             <div className="boxMessagerie">
                 {messages.length > 0 ? (
                     messages.map((message, index) => (
-                        <p key={index}>{message.username} : {message.message}</p> 
+                        <p id={message.id} key={index}>{message.username} : {message.message}</p> 
                     ))
                 ): (
                     <p></p>

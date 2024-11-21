@@ -27,7 +27,6 @@ const App: React.FC = () => {
     removeCookie('email', { path: '/' , domain:'localhost'});
     navigate('/connexion'); 
   };
-console.log(cookies.id)
 
   return (
     <CookiesProvider>
