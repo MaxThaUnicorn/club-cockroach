@@ -94,26 +94,9 @@ app.post('/api/register', bodyParser.json(), async (req, res) => {
     const passwordHash = await bcrypt.hash(password, saltRounds);
 
     try {
-
-        const resultUsername = await client.query('SELECT * FROM users WHERE username = $1', [username]);
-        const resultEmail = await client.query('SELECT * FROM users WHERE email = $1', [email]);
-
-        if (resultUsername.rows.length > 0) {
-
-            return res.status(401).json({ message: 'Le nom d\'utilisateur est déjà pris.' });
-
-        }else if (resultEmail.rows.length > 0) {
-
-            return res.status(401).json({ message: 'L\'email est déjà associé à un autre compte.' });
-
-        }
-
-        await client.query('INSERT INTO users (username, email, user_password) VALUES ($1 , $2, $3)', username, email, passwordHash);
-
+        await client.query('INSERT INTO users (username, email, user_password) VALUES ($1 , $2, $3)', [username, email, passwordHash]);
         res.status(201).json({ message: 'Votre compte a été créé avec succès.' });
-
     } catch (err) {
-
         console.error('Erreur:', err);
         res.status(500).json({ error: 'Internal Server Error' });
 
