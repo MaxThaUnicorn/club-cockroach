@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Cookies, useCookies } from 'react-cookie';
 
 export default function Messagerie() {
-    const [cookies] = useCookies();
+    const id_user = sessionStorage.getItem('id');
     const [messages, setMessages] = useState([]);
     const box = document.getElementById('sectMessage');
 
@@ -11,10 +11,6 @@ export default function Messagerie() {
             event.stopPropagation();
         });
     }
-
-    const fadeOut = (): string => {
-          return 'fade-out';
-      };
 
     const postMessage = async (event) => { {
         event.preventDefault();
