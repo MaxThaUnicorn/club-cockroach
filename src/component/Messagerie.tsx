@@ -2,23 +2,30 @@ import React, { useEffect, useState } from 'react';
 
 export default function Messagerie() {
     const [messages, setMessages] = useState([]);
-    const currentTime: Date = new Date();
-    const isoString: string = currentTime.toISOString();
+    const box = document.getElementById('sectMessage');
+
+    if (box) {
+        box.addEventListener('click', (event) => {
+            event.stopPropagation();
+        });
+    }
 
     const postMessage = async (event) => { {
         event.preventDefault();
         let message = event.target.message.value;
+        let now = new Date();
+        let cinqheuresdemoins = new Date(now.getTime() - 5 * 60 * 60 * 1000)
         
         try {
-            const response = await fetch('http://localhost:3000/api/createMessage ', {
+            const response = await fetch('http://localhost:5000/api/createMessage ', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    id_user: "1018820439746478081", 
+                    id_user: "1022782423036723201", 
                     message: message,
-                    time: isoString, 
+                    time: cinqheuresdemoins, 
                 }),
             });
             event.target.message.value = "";
@@ -39,12 +46,42 @@ export default function Messagerie() {
                 }
             })
             const data = await res.json();
+            let now = new Date();
+            data.forEach(message => {
+                if (message) {
+                    let message_time = new Date(message.time);
+                    var diff = (now.getTime() - message_time.getTime()) / 1000;
+                    
+                    if (diff > 30) {
+                        delMessage(message.id)
+                    }
+                }
+            });
             setMessages(data);
-            //console.log(data);
 
             setTimeout(() => {
                 getMessages();
             }, 10000);
+    };}
+
+    const delMessage = async (id) => { {
+        try {
+            const response = await fetch('http://localhost:5000/api/deleteMessage ', {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    id_message: id,
+                }),
+            });
+
+            if (!response.ok) {
+                console.error('Erreur:', response.statusText);
+            }
+        } catch (error) {
+            console.error('Erreur:', error);
+        }
     };}
 
     useEffect(() => {
@@ -52,7 +89,7 @@ export default function Messagerie() {
     }, []);
 
     return (
-        <section>
+        <section id="sectMessage">
             <div className="boxMessagerie">
                 {messages.length > 0 ? (
                     messages.map((message, index) => (

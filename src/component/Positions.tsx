@@ -1,3 +1,6 @@
+import ReactDOM from 'react-dom/client';
+import Personnage from '../component/Personnage';
+
 const updatePosition = async () => {
   fetch('http://localhost:5000/api/positions', {
     method: 'GET',
@@ -15,16 +18,35 @@ const updatePosition = async () => {
         userElement.style.top = user.position_y + '%';
         userElement.style.left = user.position_x + '%';
       }
+      else {
+        intatiatePersonnage(user.user_id);
+      }
     }
   });
 
   setTimeout(updatePosition, 10000);
 }
 
+const intatiatePersonnage = (userId: string) => {
+  let containerJeu = document.getElementsByClassName('contenu-jeu')[0];
+
+  const nouveauDivPersonnage = document.createElement('div');
+
+  ReactDOM.createRoot(nouveauDivPersonnage).render(<Personnage userId={userId}/>);
+
+  if (nouveauDivPersonnage.firstElementChild) {
+    containerJeu.appendChild(nouveauDivPersonnage.firstElementChild);
+  }
+}
+
 const initializePositions = (currentUserId: string) => {
   updatePosition();
 
-  document.getElementsByClassName('contenu-jeu')[0].addEventListener('click', (event) => {
+  let containerJeu = document.getElementsByClassName('contenu-jeu')[0];
+
+  intatiatePersonnage(currentUserId);
+
+  containerJeu.addEventListener('click', (event) => {
     let currentUser = document.getElementById(currentUserId);
 
     if (!currentUser) {

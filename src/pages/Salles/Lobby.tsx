@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import Personnage from '../../component/Personnage';
 import Background from '../../assets/img/vieux-plancher-sale.jpg';
 import initializePositions from '../../component/Positions';
 import Messagerie from '../../component/Messagerie';
@@ -15,7 +14,6 @@ const Lobby: React.FC = () => {
   return (
     <div className='conteneur-jeu'>
       <div className='contenu-jeu' style={{backgroundImage: `url(${Background})`}}>
-        <Personnage userId={cookies.id} />
         <Messagerie></Messagerie>
       </div>
     </div>
