@@ -53,7 +53,11 @@ app.post('/api/position', bodyParser.json(), async (req, res) => {
 app.get('/api/messages', async (req, res) => {
   try {
     const result = await client.query('SELECT messages.id, messages.message, messages.user_id, messages.time, users.username FROM messages INNER JOIN users ON messages.user_id = users.id ORDER BY time');
-    res.json(result.rows);
+    if (result) {
+      res.json(result.rows);
+    } else {
+      return;
+    }
   } catch (err) {
     console.error('Erreur:', err);
     res.status(500).json({ error: 'Internal Server Error' });
@@ -77,9 +81,14 @@ app.post('/api/createMessage', bodyParser.json(), async (req, res) => {
 //delete message
 app.delete('/api/deleteMessage', bodyParser.json(), async (req, res) => {
   let id_message = req.body.id_message;
+
   try {
+    if (await client.query('SELECT * FROM messages WHERE id = $1', [id_message])) {
       await client.query('DELETE FROM messages WHERE id = $1', [id_message]);
       res.status(201).json({ message: 'Data inserted successfully!' });
+    } else {
+      return;
+    }
   } catch (err) {
       console.error('Erreur:', err);
       res.status(500).json({ error: 'Internal Server Error' });

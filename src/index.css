@@ -290,12 +290,47 @@ nav img {
 }
 
 /* Messagerie */
-.boxMessagerie {
+
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+  }
+  to {
+      opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+      opacity: 1;
+      background-color: rgba(128,128,128,0.8);
+  }
+  to {
+      opacity: 0;
+      background-color: rgba(128,128,128,0);
+  }
+}
+
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 3s forwards;
+}
+
+.fade-out {
+  opacity: 1;
   background-color: rgba(128,128,128,0.8);
+  animation: fadeOut 3s forwards;
+}
+
+.boxMessagerie {
   width: 25%;
   position: absolute;
   right: 0;
   bottom: 80px;
+}
+
+.boxMessagerie p {
+  background-color: rgba(128,128,128,0.8);
 }
 
 .formMessagerie {
