@@ -276,11 +276,11 @@ nav img {
 }
 
 .nomPersonnage {
+  transform: rotate(90deg);
   position: absolute;
-  /*transform: rotate(45deg);*/
   color: var(--vertForet);
   text-align: center;
-  width: 150%;
+  width: 175%;
   height: 25%;
   top: 25%;
   left: 15%;

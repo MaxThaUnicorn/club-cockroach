@@ -19,7 +19,7 @@ const updatePosition = async () => {
         userElement.style.left = user.position_x + '%';
       }
       else {
-        intatiatePersonnage(user.user_id);
+        //intatiatePersonnage(user.user_id);
       }
     }
   });
@@ -27,18 +27,18 @@ const updatePosition = async () => {
   setTimeout(updatePosition, 2000);
 }
 
-const intatiatePersonnage = (userId: string) => {
+const intatiatePersonnage = (userId: string, username: string) => {
   let containerJeu = document.getElementsByClassName('contenu-jeu')[0];
 
   const nouveauDivPersonnage = document.createElement('div');
 
-  ReactDOM.createRoot(nouveauDivPersonnage).render(<Personnage userId={userId}/>);
+  ReactDOM.createRoot(nouveauDivPersonnage).render(<Personnage userId={userId} username={username}/>);
 
   containerJeu.appendChild(nouveauDivPersonnage);
 }
 
 const initializePositions = (currentUserId: string) => {
-  intatiatePersonnage(currentUserId);
+  intatiatePersonnage(currentUserId, sessionStorage.getItem('username'));
 
   updatePosition();
 
