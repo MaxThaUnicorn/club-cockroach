@@ -93,7 +93,6 @@ button:focus, button:focus-visible {
 }
 
 /* nav */
-
 nav{
   justify-content: space-between;
   align-items: center;
@@ -119,7 +118,6 @@ nav img {
 }
 
 /* Connexion */
-
 .backgroundConnexion{
   width: 100vh;
   height: 100vh;
@@ -258,6 +256,38 @@ nav img {
 
 .imageBackgroundLobby {
   background-image: url('./assets/img/vieux-plancher-sale.jpg');
+}
+
+/* Emotes */
+.sectionEmote {
+  box-sizing: border-box;
+  height: 100%;
+  width: 15%;
+  padding: 0.5%;
+  background-image: url('./assets/img/title-bg.jpg');
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.titleEmote {
+  position: absolute;
+  top: 1%;
+}
+
+.imgEmote {
+  height: 15%;
+  width: 50%;
+  margin-top: 20px;
+  background-image: url('./assets/img/title-bg.jpg');
+  border: 5px outset var(--vertForet);
+}
+
+.imgEmote:hover {
+  border: 5px inset var(--vertForet);
 }
 
 /* Personnage */

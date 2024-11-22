@@ -11,7 +11,7 @@ export default function Messagerie() {
         });
     }
 
-    const postMessage = async (event) => { {
+    const postMessage = async (event : Event) => { {
         event.preventDefault();
         let message = event.target.message.value;
         let now = new Date();
