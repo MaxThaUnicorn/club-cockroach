@@ -31,7 +31,7 @@ app.get('/api/data', async (req, res) => {
 
 app.get('/api/positions', async (req, res) => {
   try {
-    const result = await client.query('SELECT * FROM positions');
+    const result = await client.query('SELECT * FROM positions INNER JOIN users ON positions.user_id = users.id');
     res.json(result.rows);
   } catch (err) {
     console.error('Erreur:', err);

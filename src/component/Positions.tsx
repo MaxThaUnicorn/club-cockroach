@@ -1,7 +1,9 @@
 import ReactDOM from 'react-dom/client';
 import Personnage from '../component/Personnage';
 
-const updatePosition = async (currentUserId: string, currendSalleId: string) => {
+const updatePosition = async (currentUserId: string) => {
+  let currendSalleId = document.getElementById('currentSalleId').value;
+
   fetch('http://localhost:5000/api/positions', {
     method: 'GET',
     headers: {
@@ -24,15 +26,12 @@ const updatePosition = async (currentUserId: string, currendSalleId: string) => 
         }
       }
       else if (currendSalleId == user.salle_id) {
-        console.log(user.user_id);
-        console.log(currendSalleId);
-        console.log(user.salle_id);
         intatiatePersonnage(user.user_id, user.username);
       }
     }
   });
 
-  setTimeout(updatePosition, 2000, currentUserId, currendSalleId);
+  setTimeout(updatePosition, 2000, currentUserId);
 }
 
 const intatiatePersonnage = (userId: string, username: string) => {
@@ -45,7 +44,7 @@ const intatiatePersonnage = (userId: string, username: string) => {
   containerJeu.appendChild(nouveauDivPersonnage);
 }
 
-const initializePositions = (currentUserId: string, currendSalleId: string) => {
+const initializePositions = (currentUserId: string) => {
   intatiatePersonnage(currentUserId, sessionStorage.getItem('username'));
   
   fetch('http://localhost:5000/api/salle', {
@@ -56,11 +55,11 @@ const initializePositions = (currentUserId: string, currendSalleId: string) => {
     },
     body: JSON.stringify({
       user_id: currentUserId,
-      salle_id: currendSalleId
+      salle_id: document.getElementById('currentSalleId').value
     })
   });
 
-  updatePosition(currentUserId, currendSalleId);
+  updatePosition(currentUserId);
 
   let containerJeu = document.getElementsByClassName('contenu-jeu')[0];
 
@@ -105,7 +104,7 @@ const initializePositions = (currentUserId: string, currendSalleId: string) => {
         user_id: currentUserId,
         position_x: posX | 0,
         position_y: posY | 0,
-        salle_id: currendSalleId
+        salle_id: document.getElementById('currentSalleId').value
       })
     })
     .then(res => res.json());
