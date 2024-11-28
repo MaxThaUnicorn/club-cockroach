@@ -12,7 +12,7 @@ const Lobby: React.FC = () => {
     const [selectedPersonnage, setSelectedPersonnage] = useState<{ userId: string; username: string } | null>(null);
 
     useEffect(() => {
-        initializePositions(sessionStorage.getItem('id'));
+        initializePositions(sessionStorage.getItem('id'), '1024513501449945089');
     }, []);
 
     const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {

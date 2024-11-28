@@ -4,7 +4,7 @@ import initializePositions from '../../component/Positions';
 
 const Garage: React.FC = () => {
   useEffect(() => {
-    initializePositions(sessionStorage.getItem('id'));
+    initializePositions(sessionStorage.getItem('id'), '1024513501450010625');
   }, []);
   
   return (
