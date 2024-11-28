@@ -5,6 +5,7 @@ import Messagerie from '../../component/Messagerie';
 import Emotes from '../../component/Emotes';
 import Modal from '../../component/Modal';
 
+
 const Lobby: React.FC = () => {
 
     const [isModalVisible, setModalVisible] = useState(false);
@@ -19,10 +20,14 @@ const Lobby: React.FC = () => {
 
         const userId = target.id; 
         const username = target.querySelector('.nomPersonnage')?.textContent || '';
+        const cockroch = document.querySelector('.personnage');
 
         if (target.classList.contains('personnage')) {
+            
             setModalVisible(true); 
             setSelectedPersonnage({ userId, username });
+            cockroch?.classList.add('hidden');
+
         }
     };
 

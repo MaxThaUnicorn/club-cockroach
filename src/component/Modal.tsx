@@ -9,12 +9,20 @@ interface ModalProps {
   const Modal: React.FC<ModalProps> = ({ isVisible, onClose, valuePersonne }) => {
 
     const modalRef = useRef<HTMLDivElement | null>(null);
+    const btnCloseRef = useRef <HTMLSpanElement | null>(null);
+ 
+   
+    const closeModal = () => {
+        const blocPersonnage = document.querySelector('.personnage');
+        blocPersonnage?.classList.remove('hidden');
+        onClose();
+    }
 
     useEffect(() => {
 
         const handleClickOutside = (event: MouseEvent) => {
             if (modalRef.current && event.target === modalRef.current) {
-              onClose();
+                onClose()       
             }
           };
 
@@ -26,15 +34,14 @@ interface ModalProps {
     
     if (!isVisible) return null;
 
-    console.log(valuePersonne);
     return (
-        <div id='myModal' className='{modal}' ref={modalRef}>
+    <div id='myModal' className='{modal}' ref={modalRef}>
             <div className="modal-content">
-                <span className="close" onClick={onClose}>&times;</span>
+                <span ref={btnCloseRef} className="close" onClick={closeModal}>&times;</span>
                 <div>
                     <h4>Invitation</h4>
                     <p>Voulez vous envoyer une demande d'ami à {valuePersonne?.username} ?</p>
-                    <button>Envoyer</button>
+                    <button onClick={closeModal}>Envoyer</button>
                 </div>
                 
             </div>
