@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import Background from '../../assets/img/vieux-plancher-sale.jpg';
 import initializePositions from '../../component/Positions';
 import Messagerie from '../../component/Messagerie';
+import Salles from '../../component/Salles';
 import Emotes from '../../component/Emotes';
 import Modal from '../../component/Modal';
 
@@ -39,10 +40,11 @@ const Lobby: React.FC = () => {
 
     return (
         <div className='conteneur-jeu' >
-        <div className='contenu-jeu' style={{backgroundImage: `url(${Background})`}}  onClick={(event)=>handleClick(event)}>
-            <Modal isVisible={isModalVisible} onClose={closeModal} valuePersonne={selectedPersonnage}/>
-            <Messagerie />
-        </div>
+            <Salles/>
+            <div className='contenu-jeu' style={{backgroundImage: `url(${Background})`}}  onClick={(event)=>handleClick(event)}>
+                <Modal isVisible={isModalVisible} onClose={closeModal} valuePersonne={selectedPersonnage}/>
+                <Messagerie />
+            </div>
             <Emotes />
         </div>
     );
