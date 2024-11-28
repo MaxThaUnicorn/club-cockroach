@@ -2,29 +2,20 @@ import React, { useEffect, useRef } from 'react';
 
 interface PersonnageProps {
   userId: string,
-  username: string
+  username: string,
+  onClick: () => void;
 }
 
 
-const Personnage: React.FC<PersonnageProps> = ({userId, username}) => {
+const Personnage: React.FC<PersonnageProps> = ({userId, username, onClick}) => {
 
-  const personne = useRef<HTMLDivElement | null>(null);
+    return (
 
-    const handlePersonClick = () => {
-        alert(userId);
-        alert(username);
-    };
+        <div id={userId} className='personnage' onClick={onClick}>     
+        <p className='nomPersonnage' >{username}</p>
+        </div>
+    );
 
-    useEffect(() => {
-        personne.current?.addEventListener("click", handlePersonClick);
-    }, []);
-
-
-  return (
-    <div id={userId} className='personnage' ref={personne} >
-      <p className='nomPersonnage' onClick={handlePersonClick}>{username}</p>
-    </div>
-  );
 };
 
 export default Personnage;
