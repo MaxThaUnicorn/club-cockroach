@@ -26,7 +26,7 @@ CREATE TABLE messages (
 CREATE TABLE positions (
   position_x INT8 NOT NULL,
   position_y INT8 NOT NULL,
-  user_id INT8 NOT NULL,
+  user_id INT8 NOT NULL UNIQUE,
   salle_id INT8 NOT NULL,
   rowid INT8 NOT VISIBLE NOT NULL DEFAULT unique_rowid(),
   CONSTRAINT positions_pkey PRIMARY KEY (rowid ASC),

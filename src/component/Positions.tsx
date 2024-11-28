@@ -1,7 +1,7 @@
 import ReactDOM from 'react-dom/client';
 import Personnage from '../component/Personnage';
 
-const updatePosition = async (currendSalleId: string) => {
+const updatePosition = async (currentUserId: string, currendSalleId: string) => {
   fetch('http://localhost:5000/api/positions', {
     method: 'GET',
     headers: {
@@ -19,7 +19,7 @@ const updatePosition = async (currendSalleId: string) => {
           userElement.style.top = user.position_y + '%';
           userElement.style.left = user.position_x + '%';
         }
-        else {
+        else if (user.user_id != currentUserId) {
           userElement.remove();
         }
       }
@@ -32,7 +32,7 @@ const updatePosition = async (currendSalleId: string) => {
     }
   });
 
-  setTimeout(updatePosition, 2000, currendSalleId);
+  setTimeout(updatePosition, 2000, currentUserId, currendSalleId);
 }
 
 const intatiatePersonnage = (userId: string, username: string) => {
@@ -60,7 +60,7 @@ const initializePositions = (currentUserId: string, currendSalleId: string) => {
     })
   });
 
-  updatePosition(currendSalleId);
+  updatePosition(currentUserId, currendSalleId);
 
   let containerJeu = document.getElementsByClassName('contenu-jeu')[0];
 
