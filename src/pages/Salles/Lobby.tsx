@@ -17,17 +17,19 @@ const Lobby: React.FC = () => {
 
     const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
         const target = event.target as HTMLElement;
-
-        const userId = target.id; 
-        const username = target.querySelector('.nomPersonnage')?.textContent || '';
-        const cockroch = document.querySelector('.personnage');
+  
 
         if (target.classList.contains('personnage')) {
-            
-            setModalVisible(true); 
-            setSelectedPersonnage({ userId, username });
-            cockroch?.classList.add('hidden');
+            const userId = target.id; 
+            const username = target.querySelector('.nomPersonnage')?.textContent || '';
+            const sessionId = sessionStorage.getItem('id');
 
+            if (sessionId !== userId) {
+                const cockroch = document.querySelector('.personnage');
+                setModalVisible(true); 
+                setSelectedPersonnage({ userId, username });
+                cockroch?.classList.add('hidden');
+            }
         }
     };
 

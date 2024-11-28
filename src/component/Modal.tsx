@@ -22,7 +22,7 @@ interface ModalProps {
 
         const handleClickOutside = (event: MouseEvent) => {
             if (modalRef.current && event.target === modalRef.current) {
-                onClose()       
+                closeModal()      
             }
           };
 
