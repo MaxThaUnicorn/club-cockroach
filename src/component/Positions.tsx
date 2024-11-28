@@ -1,7 +1,7 @@
 import ReactDOM from 'react-dom/client';
 import Personnage from '../component/Personnage';
 
-const updatePosition = async () => {
+const updatePosition = async (currendSalleId: string) => {
   fetch('http://localhost:5000/api/positions', {
     method: 'GET',
     headers: {
@@ -15,16 +15,21 @@ const updatePosition = async () => {
       let userElement = document.getElementById(user.user_id);
 
       if (userElement) {
-        userElement.style.top = user.position_y + '%';
-        userElement.style.left = user.position_x + '%';
+        if (currendSalleId == user.salle_id) {
+          userElement.style.top = user.position_y + '%';
+          userElement.style.left = user.position_x + '%';
+        }
+        else {
+          userElement.remove();
+        }
       }
-      else {
+      else if (currendSalleId == user.salle_id) {
         intatiatePersonnage(user.user_id, "default");
       }
     }
   });
 
-  setTimeout(updatePosition, 2000);
+  setTimeout(updatePosition, 2000, currendSalleId);
 }
 
 const intatiatePersonnage = (userId: string, username: string) => {
@@ -37,10 +42,10 @@ const intatiatePersonnage = (userId: string, username: string) => {
   containerJeu.appendChild(nouveauDivPersonnage);
 }
 
-const initializePositions = (currentUserId: string) => {
+const initializePositions = (currentUserId: string, currendSalleId: string) => {
   intatiatePersonnage(currentUserId, sessionStorage.getItem('username'));
 
-  updatePosition();
+  updatePosition(currendSalleId);
 
   let containerJeu = document.getElementsByClassName('contenu-jeu')[0];
 
@@ -84,7 +89,8 @@ const initializePositions = (currentUserId: string) => {
       body: JSON.stringify({
         user_id: currentUserId,
         position_x: posX | 0,
-        position_y: posY | 0
+        position_y: posY | 0,
+        salle_id: currendSalleId
       })
     })
     .then(res => res.json());
