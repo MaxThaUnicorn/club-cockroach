@@ -26,9 +26,6 @@
 }
 
 /* classes générales */
-.gris {
-  background-color: #0a380a;
-}
 
 * {
   margin: 0;
@@ -433,4 +430,15 @@ nav img {
 
 .show{
   display: inline-block;
+}
+
+/* À propos */
+
+.apropos {
+  padding: 30px;
+}
+
+.apropos h1{
+  text-align: center;
+  margin: 30px;
 }
