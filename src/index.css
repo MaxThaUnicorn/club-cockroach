@@ -386,3 +386,10 @@ nav img {
   font-size: 0.7em;
   font-weight: 500;
 }
+
+/* Salle */
+
+.titreSalle {
+  font-size: x-large;
+  margin: 10px 0px;
+}
