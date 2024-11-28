@@ -57,6 +57,24 @@ app.post('/api/position', bodyParser.json(), async (req, res) => {
   }
 });
 
+app.post('/api/salle', bodyParser.json(), async (req, res) => {
+  try {
+    const result = await client.query('SELECT * FROM positions WHERE user_id = ($1)', [req.body.user_id]);
+
+    if (result.rowCount > 0) {
+      await client.query('UPDATE positions SET salle_id = ($1) WHERE user_id = ($2)', [req.body.salle_id, req.body.user_id]);
+      res.status(201).json({ message: 'Position mise à jour avec succès!' });
+    }
+    else {
+      await client.query('INSERT INTO positions (position_x, position_y, salle_id, user_id) VALUES (50, 50, $1, $2)', [req.body.salle_id, req.body.user_id]);
+      res.status(201).json({ message: 'Position mise à jour avec succès!' });
+    }
+  } catch (err) {
+    console.error('Erreur:', err);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
 //Select tous les messages
 app.get('/api/messages', async (req, res) => {
   try {

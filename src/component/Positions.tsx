@@ -24,7 +24,10 @@ const updatePosition = async (currendSalleId: string) => {
         }
       }
       else if (currendSalleId == user.salle_id) {
-        intatiatePersonnage(user.user_id, "default");
+        console.log(user.user_id);
+        console.log(currendSalleId);
+        console.log(user.salle_id);
+        intatiatePersonnage(user.user_id, user.username);
       }
     }
   });
@@ -44,6 +47,18 @@ const intatiatePersonnage = (userId: string, username: string) => {
 
 const initializePositions = (currentUserId: string, currendSalleId: string) => {
   intatiatePersonnage(currentUserId, sessionStorage.getItem('username'));
+  
+  fetch('http://localhost:5000/api/salle', {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json; charset=utf-8',
+      'Content-Type': 'application/json; charset=utf-8'
+    },
+    body: JSON.stringify({
+      user_id: currentUserId,
+      salle_id: currendSalleId
+    })
+  });
 
   updatePosition(currendSalleId);
 
