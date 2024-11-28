@@ -41,7 +41,7 @@ const Lobby: React.FC = () => {
     return (
         <div className='conteneur-jeu' >
             <Salles/>
-            <input type="hidden" id="currentSalleId" value={'1024513501449945089'} />
+            <input type="hidden" id="currentSalleId" value={'1024768741816664065'} />
             <div className='contenu-jeu' style={{backgroundImage: `url(${Background})`}}  onClick={(event)=>handleClick(event)}>
                 <Modal isVisible={isModalVisible} onClose={closeModal} valuePersonne={selectedPersonnage}/>
                 <Messagerie />

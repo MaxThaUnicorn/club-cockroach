@@ -39,7 +39,7 @@ const SalleBain: React.FC = () => {
   return (
       <div className='conteneur-jeu' >
           <Salles/>
-          <input type="hidden" id="currentSalleId" value={'1024513501450043393'} />
+          <input type="hidden" id="currentSalleId" value={'1024768741816762369'} />
           <div className='contenu-jeu' style={{backgroundImage: `url(${Background})`}}  onClick={(event)=>handleClick(event)}>
               <Modal isVisible={isModalVisible} onClose={closeModal} valuePersonne={selectedPersonnage}/>
               <Messagerie />
